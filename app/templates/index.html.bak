@@ -32,9 +32,9 @@
                 var dt = new Array();
                 $.get("data",function(data){
                     var index = 0;
-                    $.each(data, function(key, val) {
-                        labels[index] = data[key]['name'];
-                        dt[index] = data[key]['value'];
+                    $.each(JSON.parse(data), function(key, val) {
+                        labels[index] = key[index];
+                        dt[index] = val[index];
                         index++;
                     })
                     var option = {
@@ -47,7 +47,7 @@
                         xAxis : [
                             {
                                 type : 'category',
-                                data : ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+                                data : labels
                             }
                         ],
                         yAxis : [
@@ -59,7 +59,7 @@
                             {
                                 "name":"销量",
                                 "type":"bar",
-                                "data":[5, 20, 40, 10, 10, 20]
+                                "data": dt
                             }
                         ]
                     };
